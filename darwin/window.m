@@ -402,8 +402,7 @@ uiWebview *uiNewWebview(const char *url) {
   w->webview = [[WebView alloc] initWithFrame:NSZeroRect];
   [[w->webview mainFrame]
     loadRequest:[NSURLRequest
-                  requestWithURL:[NSURL
-                                   URLWithString:toNSString(url)]]];
+                  requestWithURL:[NSURL URLWithString:toNSString(url)]]];
   return w;
 }
 
