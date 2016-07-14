@@ -31,6 +31,9 @@ static uiControl *makeBasicControlsPage(void)
 	uiBoxSetPadded(hbox, 1);
 	uiBoxAppend(vbox, uiControl(hbox), 0);
 
+	uiBoxAppend(vbox,
+    uiControl(uiNewWebview("https://google.com")), 0);
+
 	uiBoxAppend(hbox,
 		uiControl(uiNewButton("Button")),
 		0);

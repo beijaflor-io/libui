@@ -23,3 +23,4 @@
 #define uiTabSignature 0x54616273
 #define uiTableSignature 0x5461626C
 #define uiWindowSignature 0x57696E64
+#define uiWebviewSignature 0x57696E66
