@@ -1,0 +1,8 @@
+build
+CMakefiles
+CMakeCache.txt
+/examples/Makefile
+/examples/common
+/examples/darwin
+/examples/examples
+/examples/test
