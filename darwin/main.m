@@ -199,6 +199,12 @@ int mainStep(struct nextEventArgs *nea, BOOL (^interceptEvent)(NSEvent *e))
 	NSEventType type;
 
 	@autoreleasepool {
+		// ProPuke did this in his original PR requesting this
+		// I'm not sure if this will work, but I assume it will...
+		expire = [NSDate dateWithTimeIntervalSinceNow: (NSTimeInterval) 0.016];
+		if (wait)		// but this is normal so it will work
+			expire = [NSDate distantFuture];
+
 		if (!isRunning())
 			return 0;
 
