@@ -18,11 +18,6 @@ struct uiWindow {
 	int borderless;
 };
 
-struct uiWebview {
-	uiDarwinControl c;
-	WebView *webview;
-};
-
 @implementation libuiNSWindow
 
 - (void)libui_doMove:(NSEvent *)initialEvent
@@ -136,18 +131,6 @@ static void removeConstraints(uiWindow *w)
 	singleChildConstraintsRemove(&(w->constraints), cv);
 }
 
-static void uiWebviewDestroy(uiControl *c)
-{
-	//uiWebview *w = uiWebview(c);
-
-	//// hide the window
-	//[w->webview orderOut:w->webview];
-	//removeConstraints(w);
-	//[windowDelegate unregisterWindow:w];
-	//[w->window release];
-	//uiFreeControl(uiControl(w));
-}
-
 static void uiWindowDestroy(uiControl *c)
 {
 	uiWindow *w = uiWindow(c);
@@ -166,17 +149,11 @@ static void uiWindowDestroy(uiControl *c)
 }
 
 uiDarwinControlDefaultHandle(uiWindow, window)
-// uiDarwinControlDefaultHandle(uiWebview, webview)
 
 uiControl *uiWindowParent(uiControl *c)
 {
 	return NULL;
 }
-
-// uiDarwinControlDefaultSetParent(uiWebview, webview)
-// uiDarwinControlDefaultToplevel(uiWebview, webview)
-// uiDarwinControlDefaultParent(uiWebview, webview)
-
 
 void uiWindowSetParent(uiControl *c, uiControl *parent)
 {
@@ -246,8 +223,6 @@ static void windowRelayout(uiWindow *w)
 		w->margined,
 		@"uiWindow");
 }
-
-uiDarwinControlAllDefaultsExceptDestroy(uiWebview, webview)
 
 uiDarwinControlDefaultHugsTrailingEdge(uiWindow, window)
 uiDarwinControlDefaultHugsBottom(uiWindow, window)
@@ -393,17 +368,6 @@ static int defaultOnClosing(uiWindow *w, void *data)
 static void defaultOnPositionContentSizeChanged(uiWindow *w, void *data)
 {
 	// do nothing
-}
-
-uiWebview *uiNewWebview(const char *url) {
-  uiWebview *w;
-	uiDarwinNewControl(uiWebview, w);
-
-  w->webview = [[WebView alloc] initWithFrame:NSZeroRect];
-  [[w->webview mainFrame]
-    loadRequest:[NSURLRequest
-                  requestWithURL:[NSURL URLWithString:toNSString(url)]]];
-  return w;
 }
 
 uiWindow *uiNewWindow(const char *title, int width, int height, int hasMenubar)

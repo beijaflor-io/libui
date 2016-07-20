@@ -38,6 +38,7 @@ list(APPEND _LIBUI_SOURCES
 	darwin/tab.m
 	darwin/text.m
 	darwin/util.m
+	darwin/webview.m
 	darwin/window.m
 	darwin/winmoveresize.m
 )
