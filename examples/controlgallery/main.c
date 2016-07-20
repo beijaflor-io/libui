@@ -324,6 +324,9 @@ int main(void)
 	uiTabAppend(tab, "Data Choosers", makeDataChoosersPage());
 	uiTabSetMargined(tab, 2, 1);
 
+  uiMenuIcon* icon = uiNewMenuIcon("Stuff");
+  uiMenuIconAppendItem(icon, "More Stuff");
+
 	uiControlShow(uiControl(mainwin));
 	uiMain();
 	return 0;

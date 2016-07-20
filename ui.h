@@ -117,6 +117,20 @@ typedef struct uiWebview uiWebview;
 #define uiWebview(this) ((uiWebview *) (this))
 _UI_EXTERN uiWebview *uiNewWebview(const char *url);
 
+typedef struct uiMenuIcon uiMenuIcon;
+#define uiMenuIcon(this) ((uiMenuIcon *) (this))
+_UI_EXTERN uiMenuIcon *uiNewMenuIcon(const char *title);
+
+typedef struct uiMenuIconItem uiMenuIconItem;
+#define uiMenuIconItem(this) ((uiMenuIconItem *) (this))
+_UI_EXTERN void uiMenuIconItemEnable(uiMenuIconItem *m);
+_UI_EXTERN void uiMenuIconItemDisable(uiMenuIconItem *m);
+_UI_EXTERN void uiMenuIconItemOnClicked(uiMenuIconItem *m, void (*f)(uiMenuIconItem *sender, uiWindow *window, void *data), void *data);
+_UI_EXTERN int uiMenuIconItemChecked(uiMenuIconItem *m);
+_UI_EXTERN void uiMenuIconItemSetChecked(uiMenuIconItem *m, int checked);
+
+_UI_EXTERN uiMenuIconItem *uiMenuIconAppendItem(uiMenuIcon* icon, const char *title);
+
 typedef struct uiButton uiButton;
 #define uiButton(this) ((uiButton *) (this))
 _UI_EXTERN char *uiButtonText(uiButton *b);

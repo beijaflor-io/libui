@@ -26,6 +26,7 @@ list(APPEND _LIBUI_SOURCES
 	darwin/main.m
 	darwin/map.m
 	darwin/menu.m
+	darwin/menu_icon.m
 	darwin/multilineentry.m
 	darwin/progressbar.m
 	darwin/radiobuttons.m

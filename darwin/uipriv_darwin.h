@@ -44,6 +44,7 @@ extern void uninitMenus(void);
 #define realNSApp() ((applicationClass *) NSApp)
 @interface appDelegate : NSObject <NSApplicationDelegate>
 @property (strong) menuManager *menuManager;
+@property (strong, nonatomic) NSStatusItem *statusItem;
 @end
 #define appDelegate() ((appDelegate *) [realNSApp() delegate])
 struct nextEventArgs {
