@@ -31,9 +31,6 @@ static uiControl *makeBasicControlsPage(void)
 	uiBoxSetPadded(hbox, 1);
 	uiBoxAppend(vbox, uiControl(hbox), 0);
 
-	uiBoxAppend(vbox,
-    uiControl(uiNewWebview("https://google.com")), 0);
-
 	uiBoxAppend(hbox,
 		uiControl(uiNewButton("Button")),
 		0);
@@ -77,6 +74,22 @@ static uiControl *makeBasicControlsPage(void)
 		"Multiline Entry No Wrap",
 		uiControl(uiNewNonWrappingMultilineEntry()),
 		1);
+
+	group = uiNewGroup("Web Content");
+	uiBoxAppend(vbox, uiControl(group), 1);
+
+  uiBox *webcontentBox = uiNewVerticalBox();
+	uiGroupSetChild(group, uiControl(webcontentBox));
+
+  uiWebview *webview;
+  webview = uiNewWebview(NULL);
+  uiWebviewLoadHTML(webview, "<h1>hello world</h1><button>Here</button>", "");
+  uiBoxAppend(webcontentBox, uiControl(webview), 1);
+  uiBoxAppend(webcontentBox, uiControl(uiNewHorizontalSeparator()), 0);
+  webview = uiNewWebview(NULL);
+  uiBoxAppend(webcontentBox, uiControl(webview), 1);
+  uiWebviewLoadUrl(webview, "http://google.com");
+
 
 	return uiControl(vbox);
 }

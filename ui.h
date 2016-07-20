@@ -116,6 +116,8 @@ _UI_EXTERN uiWindow *uiNewWindow(const char *title, int width, int height, int h
 typedef struct uiWebview uiWebview;
 #define uiWebview(this) ((uiWebview *) (this))
 _UI_EXTERN uiWebview *uiNewWebview(const char *url);
+_UI_EXTERN void uiWebviewLoadHTML(uiWebview* w, const char *html, const char *baseUrl);
+_UI_EXTERN void uiWebviewLoadUrl(uiWebview* w, const char *url);
 
 typedef struct uiMenuIcon uiMenuIcon;
 #define uiMenuIcon(this) ((uiMenuIcon *) (this))
