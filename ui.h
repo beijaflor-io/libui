@@ -119,6 +119,7 @@ _UI_EXTERN uiWebview *uiNewWebview();
 _UI_EXTERN void uiWebviewLoadHTML(uiWebview* w, const char *html, const char *baseUrl);
 _UI_EXTERN void uiWebviewLoadUrl(uiWebview* w, const char *url);
 _UI_EXTERN char* uiWebviewEval(uiWebview* w, const char *script);
+_UI_EXTERN void uiWebviewOnLoad(uiWebview *w, void (*f)(uiWebview *b, void *data), void *data);
 
 typedef struct uiMenuIcon uiMenuIcon;
 #define uiMenuIcon(this) ((uiMenuIcon *) (this))
