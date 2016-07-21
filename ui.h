@@ -121,6 +121,14 @@ _UI_EXTERN void uiWebviewLoadUrl(uiWebview* w, const char *url);
 _UI_EXTERN char* uiWebviewEval(uiWebview* w, const char *script);
 _UI_EXTERN void uiWebviewOnLoad(uiWebview *w, void (*f)(uiWebview *b, void *data), void *data);
 
+#define uiMapviewSignature 0x57696E69
+
+typedef struct uiMapview uiMapview;
+#define uiMapview(this) ((uiMapview *) (this))
+_UI_EXTERN uiMapview *uiNewMapview();
+_UI_EXTERN void uiMapviewSetRegion(uiMapview *m);
+
+
 typedef struct uiMenuIcon uiMenuIcon;
 #define uiMenuIcon(this) ((uiMenuIcon *) (this))
 _UI_EXTERN uiMenuIcon *uiNewMenuIcon(const char *title);
