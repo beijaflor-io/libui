@@ -7,8 +7,7 @@ struct uiWebview {
 };
 
 
-static void uiWebviewDestroy(uiControl *c)
-{
+static void uiWebviewDestroy(uiControl *c) {
 }
 
 uiDarwinControlAllDefaultsExceptDestroy(uiWebview, webview)
@@ -22,15 +21,13 @@ void uiWebviewLoadUrl(uiWebview *w, const char *url) {
   [[w->webview mainFrame] loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:toNSString(url)]]];
 }
 
-uiWebview *uiNewWebview(const char *url) {
+char* uiWebviewEval(uiWebview *w, const char *script) {
+  return [[w->webview stringByEvaluatingJavaScriptFromString:toNSString(script)] UTF8String];
+}
+
+uiWebview *uiNewWebview() {
   uiWebview *w;
   uiDarwinNewControl(uiWebview, w);
-
   w->webview = [[WebView alloc] initWithFrame:NSZeroRect];
-
-  if (url != NULL) {
-    uiWebviewLoadUrl(w, url);
-  }
-
   return w;
 }

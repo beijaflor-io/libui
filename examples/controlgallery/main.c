@@ -84,8 +84,16 @@ static uiControl *makeBasicControlsPage(void)
   uiWebview *webview;
   webview = uiNewWebview(NULL);
   uiWebviewLoadHTML(webview, "<h1>hello world</h1><button>Here</button>", "");
+  uiWebviewEval(
+    webview,
+    "document.querySelector('button').addEventListener('click', () => document.write('buya'));"
+    /* "setInterval(function() {document.write('js')}, 1000)" */
+  );
+  /* uiWebviewOnLoaded(webview, &webviewOnLoaded); */
+
   uiBoxAppend(webcontentBox, uiControl(webview), 1);
   uiBoxAppend(webcontentBox, uiControl(uiNewHorizontalSeparator()), 0);
+
   webview = uiNewWebview(NULL);
   uiBoxAppend(webcontentBox, uiControl(webview), 1);
   uiWebviewLoadUrl(webview, "http://google.com");
