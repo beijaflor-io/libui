@@ -289,6 +289,8 @@ typedef struct uiMenu uiMenu;
 #define uiMenu(this) ((uiMenu *) (this))
 _UI_EXTERN uiMenuItem *uiMenuAppendItem(uiMenu *m, const char *name);
 _UI_EXTERN uiMenuItem *uiMenuAppendItemWith(uiMenu *m, const char *name, const char *key, const char* sel);
+_UI_EXTERN uiMenuItem *uiMenuAppendItemWithTarget(uiMenu *m, const char *name, const char *key, const char* sel, void* target);
+_UI_EXTERN uiMenuItem *uiMenuAppendItemWithDefaultTarget(uiMenu *m, const char *name, const char *key, const char* sel);
 _UI_EXTERN uiMenuItem *uiMenuAppendCheckItem(uiMenu *m, const char *name);
 _UI_EXTERN uiMenuItem *uiMenuAppendQuitItem(uiMenu *m);
 _UI_EXTERN uiMenuItem *uiMenuAppendPreferencesItem(uiMenu *m);

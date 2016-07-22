@@ -291,6 +291,16 @@ uiMenuItem *uiMenuAppendItem(uiMenu *m, const char *name)
 	return newItem(m, typeRegular, name, NULL, NULL, appDelegate().menuManager);
 }
 
+uiMenuItem *uiMenuAppendItemWithDefaultTarget(uiMenu *m, const char *name, const char *key, const char* sel)
+{
+	return newItem(m, typeRegular, name, key, sel, appDelegate().menuManager);
+}
+
+uiMenuItem *uiMenuAppendItemWithTarget(uiMenu *m, const char *name, const char *key, const char* sel, void *target)
+{
+	return newItem(m, typeRegular, name, key, sel, target);
+}
+
 uiMenuItem *uiMenuAppendItemWith(uiMenu *m, const char *name, const char *key, const char* sel)
 {
 	return newItem(m, typeRegular, name, key, sel, nil);
