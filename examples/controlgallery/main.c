@@ -328,6 +328,11 @@ int main(void)
 		return 1;
 	}
 
+	uiMenu *menu = uiNewMenu("File");
+	uiMenuItem *item = uiMenuAppendItem(menu, "Open");
+	item = uiMenuAppendItem(menu, "Save");
+	item = uiMenuAppendQuitItem(menu);
+
 	mainwin = uiNewWindow("libui Control Gallery", 640, 480, 1);
 	uiWindowOnClosing(mainwin, onClosing, NULL);
 	uiOnShouldQuit(onShouldQuit, mainwin);
