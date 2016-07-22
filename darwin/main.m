@@ -167,6 +167,7 @@ void uiMainSteps(void)
 		return stepsIsRunning;
 	};
 	stepsIsRunning = YES;
+	[realNSApp() finishLaunching];
 }
 
 int uiMainStep(int wait)
