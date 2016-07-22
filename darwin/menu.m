@@ -232,7 +232,7 @@ void uiMenuItemSetChecked(uiMenuItem *item, int checked)
 	[item->item setState:state];
 }
 
-static uiMenuItem *newItem(uiMenu *m, int type, const char *name)
+static uiMenuItem *newItem(uiMenu *m, int type, const char *name, const char *key, const char *selName, void* target)
 {
 	@autoreleasepool {
 
@@ -259,10 +259,21 @@ static uiMenuItem *newItem(uiMenu *m, int type, const char *name)
 		[m->menu addItem:item->item];
 		break;
 	default:
-		item->item = [[NSMenuItem alloc] initWithTitle:toNSString(name) action:@selector(onClicked:) keyEquivalent:@""];
-		[item->item setTarget:appDelegate().menuManager];
-		[m->menu addItem:item->item];
-		break;
+    {
+      SEL sl;
+      if (selName != NULL) sl = NSSelectorFromString(toNSString(selName));
+      else sl = @selector(onClicked:);
+
+      NSString *keyEquivalent;
+      if (key != NULL) keyEquivalent = toNSString(key);
+      else keyEquivalent = @"";
+      item->item = [[NSMenuItem alloc] initWithTitle:toNSString(name)
+                                              action:sl
+                                       keyEquivalent:keyEquivalent];
+      [item->item setTarget:target];
+      [m->menu addItem:item->item];
+    }
+    break;
 	}
 
 	[appDelegate().menuManager register:item->item to:item];
@@ -277,35 +288,40 @@ static uiMenuItem *newItem(uiMenu *m, int type, const char *name)
 
 uiMenuItem *uiMenuAppendItem(uiMenu *m, const char *name)
 {
-	return newItem(m, typeRegular, name);
+	return newItem(m, typeRegular, name, NULL, NULL, appDelegate().menuManager);
+}
+
+uiMenuItem *uiMenuAppendItemWith(uiMenu *m, const char *name, const char *key, const char* sel)
+{
+	return newItem(m, typeRegular, name, key, sel, nil);
 }
 
 uiMenuItem *uiMenuAppendCheckItem(uiMenu *m, const char *name)
 {
-	return newItem(m, typeCheckbox, name);
+	return newItem(m, typeCheckbox, name, NULL, NULL, appDelegate().menuManager);
 }
 
 uiMenuItem *uiMenuAppendQuitItem(uiMenu *m)
 {
 	// duplicate check is in the register:to: selector
-	return newItem(m, typeQuit, NULL);
+	return newItem(m, typeQuit, NULL, NULL, NULL, appDelegate().menuManager);
 }
 
 uiMenuItem *uiMenuAppendPreferencesItem(uiMenu *m)
 {
 	// duplicate check is in the register:to: selector
-	return newItem(m, typePreferences, NULL);
+	return newItem(m, typePreferences, NULL, NULL, NULL, appDelegate().menuManager);
 }
 
 uiMenuItem *uiMenuAppendAboutItem(uiMenu *m)
 {
 	// duplicate check is in the register:to: selector
-	return newItem(m, typeAbout, NULL);
+	return newItem(m, typeAbout, NULL, NULL, NULL, appDelegate().menuManager);
 }
 
 void uiMenuAppendSeparator(uiMenu *m)
 {
-	newItem(m, typeSeparator, NULL);
+	newItem(m, typeSeparator, NULL, NULL, NULL, appDelegate().menuManager);
 }
 
 uiMenu *uiNewMenu(const char *name)

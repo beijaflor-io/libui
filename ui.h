@@ -288,6 +288,7 @@ _UI_EXTERN void uiMenuItemSetChecked(uiMenuItem *m, int checked);
 typedef struct uiMenu uiMenu;
 #define uiMenu(this) ((uiMenu *) (this))
 _UI_EXTERN uiMenuItem *uiMenuAppendItem(uiMenu *m, const char *name);
+_UI_EXTERN uiMenuItem *uiMenuAppendItemWith(uiMenu *m, const char *name, const char *key, const char* sel);
 _UI_EXTERN uiMenuItem *uiMenuAppendCheckItem(uiMenu *m, const char *name);
 _UI_EXTERN uiMenuItem *uiMenuAppendQuitItem(uiMenu *m);
 _UI_EXTERN uiMenuItem *uiMenuAppendPreferencesItem(uiMenu *m);
